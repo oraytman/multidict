@@ -28,7 +28,9 @@ class TestMultiDict(unittest.TestCase):
         self.md['a'] = 1
         self.md['a'] = 2
         self.md['b'] = 3
-        self.assertEqual(len(self.md), 3)            
+        self.assertEqual(len(self.md), 3)   
+        del self.md['a']
+        self.assertEqual(len(self.md), 1)
 
     def test_repr(self):
         self.md['a'] = 1
