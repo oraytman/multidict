@@ -11,6 +11,10 @@ class MultiDict(dict):
             **kwargs: Keyword arguments to initialize the dictionary.
         """
         super().__init__(*args, **kwargs)
+        
+        for key, value in self.items():
+            if not isinstance(value, list):
+                raise TypeError(f"Value for key '{key}' must be a list.")
 
     def __setitem__(self, key, value):
         """

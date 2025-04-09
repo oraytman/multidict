@@ -34,7 +34,14 @@ class TestMultiDict(unittest.TestCase):
 
     def test_repr(self):
         self.md['a'] = 1
-        self.assertEqual(repr(self.md), repr(MultiDict({'a': [1]})))        
+        self.assertEqual(repr(self.md), repr(MultiDict({'a': [1]})))     
+
+    def test_init_with_dict(self):
+        try:
+            d = {'a': 1, 'b': 2}
+            md = MultiDict(d)
+        except TypeError as e:
+            self.assertEqual(str(e), "Value for key 'a' must be a list.")
 
 if __name__ == '__main__':
     unittest.main()
