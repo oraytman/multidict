@@ -11,7 +11,6 @@ class MultiDict(dict):
             **kwargs: Keyword arguments to initialize the dictionary.
         """
         super().__init__(*args, **kwargs)
-        self._count = 0
 
     def __setitem__(self, key, value):
         """
@@ -28,7 +27,6 @@ class MultiDict(dict):
             super().__setitem__(key, [value])
         else:
             super().__getitem__(key).append(value)
-        self._count += 1
 
     def __delitem__(self, key):
         """
@@ -37,17 +35,7 @@ class MultiDict(dict):
         Args:
             key: The key to delete.
         """
-        self._count -= len(self[key])
         _ = super().pop(key)
-
-    def __len__(self):
-        """
-        Return the total number of values in the dictionary.
-
-        Returns:
-            int: The total count of values.
-        """
-        return self._count
 
     def __repr__(self):
         """
